@@ -31,12 +31,30 @@ function App() {
   }
 
   function onFoodAdd(foodObj) {
-    const clone = [...todayFoods]
+    const clone = [...todayFoods];
 
-    clone.push(foodObj)
+    let modify = false;
 
-    setTodayFoods(clone)
+    clone.map((todayFood) => {
+      if (foodObj.name === todayFood.name ){
+        modify = true;
+        todayFood.quantity += foodObj.quantity; 
+      } 
+    })
+      if(!modify){
+        clone.push(foodObj);
+      }
+    setTodayFoods(clone);
+
   }
+
+
+
+
+
+
+
+
   return (
     <div className='container'>
       <h1 className='title'></h1>
