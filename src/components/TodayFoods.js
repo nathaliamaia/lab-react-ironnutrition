@@ -26,7 +26,7 @@ function TodayFoods(props) {
           {props.todayFoods.map((currentFoodObj) => {
             const { name, quantity, calories } = currentFoodObj;
             return (
-              <div className="box">
+              <div key={name} className="box">
                 <li>
                   <label className="checkbox">
                     <input checked={selectedFood.includes(name)} onClick={() => selectItems(name)} className="mr-2" type="checkbox" />

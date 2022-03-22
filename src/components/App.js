@@ -5,6 +5,7 @@ import foodsJson from '../foods.json';
 import FoodBox from './FoodBox';
 import Search from './Search';
 import TodayFoods from './TodayFoods';
+import NewFoodForm from './NewFoodForm';
 
 function App() {
 
@@ -49,7 +50,6 @@ function App() {
 
   }
 
-
   function deleteItems(items) {
     const clone = todayFoods.filter((food) => !items.includes(food.name));
 
@@ -57,12 +57,22 @@ function App() {
 
     setTodayFoods(clone)
   }
+  
+  function addNewFood(formData){  
+    const clone = [...foods]
+
+    clone.push(formData)
+
+    setFoods(clone);
+  }
 
 
   return (
     <div className='container'>
       <h1 className='title'></h1>
       {/*fzr iteration 3 aqui*/}
+      <NewFoodForm addNewFood={addNewFood}/>
+
       <Search
         value={searchTerm}
         onChange={(event) => setSearchTerm(event.target.value)} />
