@@ -10,7 +10,8 @@ function App() {
 
   const [foods, setFoods] = useState([...foodsJson]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [todayFoods, setTodayFoods] = useState([])
+  const [todayFoods, setTodayFoods] = useState([]);
+
 
   useEffect(() => {
     filterFoods(searchTerm);
@@ -49,10 +50,13 @@ function App() {
   }
 
 
+  function deleteItems(items) {
+    const clone = todayFoods.filter((food) => !items.includes(food.name));
 
+   console.log(clone);
 
-
-
+    setTodayFoods(clone)
+  }
 
 
   return (
@@ -69,7 +73,7 @@ function App() {
           {foods.map((currentFoodObj) => (<FoodBox key={currentFoodObj.name} food={currentFoodObj} onFoodAdd={onFoodAdd} />
           ))}
         </div>
-        <TodayFoods todayFoods={todayFoods} />
+        <TodayFoods todayFoods={todayFoods} deleteItems={deleteItems} />
       </div>
     </div>
   );
