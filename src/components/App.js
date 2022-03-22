@@ -38,27 +38,55 @@ function App() {
     let modify = false;
 
     clone.map((todayFood) => {
-      if (foodObj.name === todayFood.name ){
+      if (foodObj.name === todayFood.name) {
         modify = true;
-        todayFood.quantity += foodObj.quantity; 
-      } 
-    })
-      if(!modify){
-        clone.push(foodObj);
+        todayFood.quantity += foodObj.quantity;
       }
+    })
+    if (!modify) {
+      clone.push(foodObj);
+    }
     setTodayFoods(clone);
 
   }
 
+  // another option
+
+  // function onFoodAdd(foodObj) {
+  //   const eveythingButFood = todaysFood.filter((element) => {
+  //     return element.name !== food.name;
+  //   });
+
+  //   const calcNewTotal = todaysFood.filter((element) => {
+  //     return element.name === food.name;
+  //   });
+
+  //   const quantityAux = calcNewTotal.reduce((acc, current) => {
+  //     return { ...current, quantity: acc.quantity + current.quantity };
+  //   }, food);
+
+  //   setTodaysFodd([...eveythingButFood, quantityAux]);
+  // }
+
+
   function deleteItems(items) {
     const clone = todayFoods.filter((food) => !items.includes(food.name));
 
-   console.log(clone);
+    console.log(clone);
 
     setTodayFoods(clone)
   }
-  
-  function addNewFood(formData){  
+
+
+  //another option
+
+  // function deleteItems(items) {
+  //   const clone = [...todaysFood];
+  //   clone.splice(items, 1);
+  //   setTodaysFodd([...clone]);
+  // }
+
+  function addNewFood(formData) {
     const clone = [...foods]
 
     clone.push(formData)
@@ -70,8 +98,8 @@ function App() {
   return (
     <div className='container'>
       <h1 className='title'></h1>
-      {/*fzr iteration 3 aqui*/}
-      <NewFoodForm addNewFood={addNewFood}/>
+
+      <NewFoodForm addNewFood={addNewFood} />
 
       <Search
         value={searchTerm}
